@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login Form for Automated Testing</title>
+  <style>
+    body {
+      background-image:
+        url("https://static.vecteezy.com/system/resources/thumbnails/006/965/779/small/empty-top-wooden-table-and-sakura-flower-with-fog-and-morning-light-background-photo.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Login Form</h2>
+  <form id="loginForm" onsubmit="return validateForm()" action="success.html">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <br>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <br>
+    <div>
+      <input type="submit" value="Submit">
+    </div>
+    <p id="errorMessage" class="error" style="display:none"></p>
+  </form>
+
+  <div>
+    <h2>Usernames</h2>
+    <p>user1, user2, user3, user4, user5</p>
+    <h2>Password</h2>
+    <p>password</p>
+  </div>
+
+  <script>
+    function validateForm() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var errorMessage = document.getElementById("errorMessage");
+
+      var validUsernames = ["user1", "user2", "user3", "user4", "user5"];
+      var validPassword = "password";
+
+      if (validUsernames.includes(username)) {
+        if (password === validPassword) {
+          // Clear the input fields
+          document.getElementById("username").value = "";
+          document.getElementById("password").value = "";
+          return true; // Proceed to the success page
+        } else {
+          errorMessage.style.display = "block";
+          errorMessage.textContent = "Invalid password.";
+          return false; // Prevent form submission
+        }
+      } else {
+        errorMessage.style.display = "block";
+        errorMessage.textContent = "Invalid username.";
+        return false; // Prevent form submission
+      }
+    }
+  </script>
+</body>
+
+</html>
